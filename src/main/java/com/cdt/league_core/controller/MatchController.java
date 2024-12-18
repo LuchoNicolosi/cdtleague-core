@@ -1,9 +1,7 @@
-package com.cdt.league.controller;
+package com.cdt.league_core.controller;
 
-import com.cdt.league.dto.MatchDTO;
-import com.cdt.league.entity.Match;
-import com.cdt.league.service.MatchHistoryService;
-import com.cdt.league.service.MatchService;
+import com.cdt.league_core.dto.MatchDTO;
+import com.cdt.league_core.service.MatchService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

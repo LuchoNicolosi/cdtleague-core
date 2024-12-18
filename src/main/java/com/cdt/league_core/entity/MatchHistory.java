@@ -1,8 +1,7 @@
-package com.cdt.league.entity;
+package com.cdt.league_core.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

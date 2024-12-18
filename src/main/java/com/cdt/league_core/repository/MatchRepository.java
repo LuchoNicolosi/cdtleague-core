@@ -1,7 +1,7 @@
-package com.cdt.league.repository;
+package com.cdt.league_core.repository;
 
 
-import com.cdt.league.entity.Match;
+import com.cdt.league_core.entity.Match;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

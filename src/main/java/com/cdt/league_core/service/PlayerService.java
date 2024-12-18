@@ -1,9 +1,8 @@
-package com.cdt.league.service;
+package com.cdt.league_core.service;
 
-import com.cdt.league.dto.PlayerDTO;
-import com.cdt.league.entity.Player;
-import com.cdt.league.repository.PlayerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cdt.league_core.dto.PlayerDTO;
+import com.cdt.league_core.entity.Player;
+import com.cdt.league_core.repository.PlayerRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

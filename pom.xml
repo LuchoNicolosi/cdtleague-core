@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cdt</groupId>
-	<artifactId>league</artifactId>
+	<artifactId>league-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cdt-league</name>
+	<name>league-core</name>
 	<description>It is a mvp about management and creation of matches and player histories.</description>
 	<url/>
 	<licenses>
@@ -65,6 +65,16 @@
 	<build>
 		<finalName>league</finalName>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<nonFilteredFileExtensions>
+						<nonFilteredFileExtension>properties</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

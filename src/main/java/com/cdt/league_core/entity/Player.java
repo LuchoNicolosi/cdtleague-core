@@ -1,7 +1,6 @@
-package com.cdt.league.entity;
+package com.cdt.league_core.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.time.LocalDate;
 

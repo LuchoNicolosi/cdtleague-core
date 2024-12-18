@@ -1,7 +1,7 @@
-package com.cdt.league.controller;
+package com.cdt.league_core.controller;
 
-import com.cdt.league.dto.PlayerDTO;
-import com.cdt.league.service.PlayerService;
+import com.cdt.league_core.dto.PlayerDTO;
+import com.cdt.league_core.service.PlayerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,7 @@
-package com.cdt.league.dto;
+package com.cdt.league_core.dto;
 
-import com.cdt.league.entity.enums.MatchType;
+import com.cdt.league_core.entity.enums.MatchType;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;

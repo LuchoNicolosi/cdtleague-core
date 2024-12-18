@@ -1,8 +1,8 @@
-package com.cdt.league.service;
+package com.cdt.league_core.service;
 
-import com.cdt.league.entity.Match;
-import com.cdt.league.entity.MatchHistory;
-import com.cdt.league.repository.MatchHistoryRepository;
+import com.cdt.league_core.entity.Match;
+import com.cdt.league_core.entity.MatchHistory;
+import com.cdt.league_core.repository.MatchHistoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

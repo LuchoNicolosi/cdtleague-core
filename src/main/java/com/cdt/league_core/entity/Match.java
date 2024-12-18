@@ -1,9 +1,7 @@
-package com.cdt.league.entity;
+package com.cdt.league_core.entity;
 
-import com.cdt.league.entity.enums.MatchType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.cdt.league_core.entity.enums.MatchType;
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.time.LocalDate;
 

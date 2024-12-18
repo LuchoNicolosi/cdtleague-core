@@ -1,4 +1,4 @@
-package com.cdt.league.config;
+package com.cdt.league_core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
