@@ -20,18 +20,20 @@ public class Player {
     private Integer cups = 0;
     @Column(name = "created_at")
     private LocalDate createdAt;
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
 
     public Player() {
     }
 
-    public Player(Long id, String name, String avatar, String description, Integer cups, LocalDate createdAt) {
+    public Player(Long id, String name, String avatar, String description, Integer cups, LocalDate createdAt, LocalDate updatedAt) {
         this.id = id;
         this.name = name;
         this.avatar = avatar;
         this.description = description;
         this.cups = cups;
-
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public void setAvatar(String avatar) {
@@ -56,5 +58,9 @@ public class Player {
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

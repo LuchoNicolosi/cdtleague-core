@@ -15,9 +15,9 @@ public class PlayerDTO {
     private String avatar;
     @NotNull
     private String description;
-    private String clubId;
-    private Integer cups = 0;
+    private Integer cups;
     private LocalDate createdAt;
+    private LocalDate updatedAt;
 
     public void setId(Long id) {
         this.id = id;
@@ -25,34 +25,6 @@ public class PlayerDTO {
 
     public String getAvatar() {
         return avatar;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getClubId() {
-        return clubId;
-    }
-
-    public void setClubId(String clubId) {
-        this.clubId = clubId;
-    }
-
-    public void setCups(Integer cups) {
-        this.cups = cups;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -73,5 +45,9 @@ public class PlayerDTO {
 
     public LocalDate getCreatedAt() {
         return createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 }

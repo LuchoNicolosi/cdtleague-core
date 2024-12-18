@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CdtLeagueApplication {
+public class LeagueCoreApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CdtLeagueApplication.class, args);
+		SpringApplication.run(LeagueCoreApplication.class, args);
 	}
 
 }
