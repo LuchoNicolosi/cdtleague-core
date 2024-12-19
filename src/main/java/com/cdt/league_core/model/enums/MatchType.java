@@ -1,4 +1,4 @@
-package com.cdt.league_core.entity.enums;
+package com.cdt.league_core.model.enums;
 
 
 

@@ -1,4 +1,4 @@
-package com.cdt.league_core.entity;
+package com.cdt.league_core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

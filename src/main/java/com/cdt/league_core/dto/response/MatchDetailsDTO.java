@@ -1,27 +1,20 @@
-package com.cdt.league_core.dto;
+package com.cdt.league_core.dto.response;
 
 import com.cdt.league_core.model.enums.MatchType;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class MatchDTO {
+public class MatchDetailsDTO {
     private Long id;
-    @NotNull
     private Long player1Id;
-    @NotNull
     private Long player2Id;
-    @NotNull
+    private String playerOneName;
+    private String playerTwoName;
     private Integer playerOneScore;
-    @NotNull
     private Integer playerTwoScore;
-    @NotNull
     private MatchType type;
     private LocalDate createdAt;
 
@@ -47,6 +40,22 @@ public class MatchDTO {
 
     public void setPlayer2Id(Long player2Id) {
         this.player2Id = player2Id;
+    }
+
+    public String getPlayerOneName() {
+        return playerOneName;
+    }
+
+    public void setPlayerOneName(String playerOneName) {
+        this.playerOneName = playerOneName;
+    }
+
+    public String getPlayerTwoName() {
+        return playerTwoName;
+    }
+
+    public void setPlayerTwoName(String playerTwoName) {
+        this.playerTwoName = playerTwoName;
     }
 
     public Integer getPlayerOneScore() {

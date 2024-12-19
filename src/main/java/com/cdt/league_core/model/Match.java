@@ -1,6 +1,6 @@
-package com.cdt.league_core.entity;
+package com.cdt.league_core.model;
 
-import com.cdt.league_core.entity.enums.MatchType;
+import com.cdt.league_core.model.enums.MatchType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

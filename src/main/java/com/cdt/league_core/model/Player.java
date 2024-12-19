@@ -1,8 +1,6 @@
-package com.cdt.league_core.entity;
+package com.cdt.league_core.model;
 
-import com.cdt.league_core.dto.PlayerDTO;
 import jakarta.persistence.*;
-import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 
@@ -12,7 +10,7 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
     @Column
     private String avatar;
@@ -37,6 +35,7 @@ public class Player {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }

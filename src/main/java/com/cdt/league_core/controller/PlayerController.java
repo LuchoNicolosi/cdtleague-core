@@ -1,9 +1,12 @@
 package com.cdt.league_core.controller;
 
+import com.cdt.league_core.dto.ApiResponse;
 import com.cdt.league_core.dto.PlayerDTO;
-import com.cdt.league_core.service.PlayerService;
+import com.cdt.league_core.service.impl.PlayerServiceImpl;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,31 +17,34 @@ import java.util.List;
 @RequestMapping("/player")
 public class PlayerController {
     private final Logger log = LoggerFactory.getLogger(PlayerController.class);
-    private final PlayerService playerService;
+    private final PlayerServiceImpl playerService;
 
-    public PlayerController(PlayerService playerService) {
+    @Autowired
+    public PlayerController(PlayerServiceImpl playerService) {
         this.playerService = playerService;
     }
 
 
     @GetMapping
-    public  ResponseEntity getPlayers(){
+    public ResponseEntity<ApiResponse<List<PlayerDTO>>> getPlayers() {
         try {
-            List<PlayerDTO> players = playerService.getAllPlayers();
-            return ResponseEntity.status(HttpStatus.OK).body(players);
+            return ResponseEntity.ok(new ApiResponse<>(true, playerService.findAll(), "Players fetched successfully"));
         } catch (Exception e) {
             log.error("Error get players: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error get players: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, null, "Error fetching players: " + e.getMessage()));
         }
     }
-    @PostMapping
-    public ResponseEntity<String> createPlayer(@RequestBody PlayerDTO data) {
+
+    @PostMapping("/create")
+    public ResponseEntity<ApiResponse> createPlayer(@Valid @RequestBody PlayerDTO data) {
         try {
             playerService.createPlayer(data);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Player created successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(true, null, "Successfully created"));
         } catch (Exception e) {
             log.error("Error creating player: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating player: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, null, "Error create player: " + e.getMessage()));
         }
     }
 }
