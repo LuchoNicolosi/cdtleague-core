@@ -23,6 +23,30 @@ public class PlayerDTO {
         this.id = id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCups(Integer cups) {
+        this.cups = cups;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public String getAvatar() {
         return avatar;
     }

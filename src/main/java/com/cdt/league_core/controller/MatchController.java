@@ -1,15 +1,15 @@
 package com.cdt.league_core.controller;
 
 import com.cdt.league_core.dto.MatchDTO;
+import com.cdt.league_core.dto.MatchDTO;
 import com.cdt.league_core.service.MatchService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/match")
@@ -27,6 +27,17 @@ public class MatchController {
         } catch (Exception e) {
             log.error("Error creating match: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating player: " + e.getMessage());
+        }
+    }
+
+    @GetMapping
+    public  ResponseEntity getMatches(){
+        try {
+            List<MatchDTO> matches = matchService.getAllMatches();
+            return ResponseEntity.status(HttpStatus.OK).body(matches);
+        } catch (Exception e) {
+            log.error("Error getting matches: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error get matches: " + e.getMessage());
         }
     }
 }

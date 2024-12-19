@@ -13,6 +13,8 @@ public class MatchDTO {
     private Long player1Id;
     @NotNull
     private Long player2Id;
+    private String playerOneName;
+    private String playerTwoName;
     @NotNull
     private Integer playerOneScore;
     @NotNull
@@ -59,6 +61,26 @@ public class MatchDTO {
 
     public Integer getPlayerTwoScore() {
         return playerTwoScore;
+    }
+
+    public String getPlayerOneName() {
+        return playerOneName;
+    }
+
+    public void setPlayerOneName(String playerOneName) {
+        this.playerOneName = playerOneName;
+    }
+
+    public String getPlayerTwoName() {
+        return playerTwoName;
+    }
+
+    public void setPlayerTwoName(String playerTwoName) {
+        this.playerTwoName = playerTwoName;
+    }
+
+    public void setType(MatchType type) {
+        this.type = type;
     }
 
     public void setPlayerTwoScore(Integer playerTwoScore) {

@@ -1,6 +1,8 @@
 package com.cdt.league_core.entity;
 
+import com.cdt.league_core.dto.PlayerDTO;
 import jakarta.persistence.*;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 
@@ -16,8 +18,8 @@ public class Player {
     private String avatar;
     @Column
     private String description;
-    @Column(columnDefinition = "INTEGER DEFAULT 0")
-    private Integer cups = 0;
+    @Column
+    private Integer cups;
     @Column(name = "created_at")
     private LocalDate createdAt;
     @Column(name = "updated_at")
@@ -35,7 +37,6 @@ public class Player {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
@@ -54,6 +55,34 @@ public class Player {
 
     public void setCups(Integer cups) {
         this.cups = cups;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getCups() {
+        return cups;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
     public void setCreatedAt(LocalDate createdAt) {

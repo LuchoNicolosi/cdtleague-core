@@ -20,6 +20,11 @@ public class Match {
     private Long player2Id;
     @Column(name = "player_one_score", nullable = false)
     private Integer playerOneScore;
+
+    public MatchHistory getMatchHistory() {
+        return matchHistory;
+    }
+
     @Column(name = "player_two_score", nullable = false)
     private Integer playerTwoScore;
     @Column(name = "created_at")
