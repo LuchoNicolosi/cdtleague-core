@@ -48,8 +48,12 @@ public class MatchServiceImpl implements IMatchService {
     public List<MatchDetailsDTO> getByPlayerId(Long playerId) {
         List<MatchDetailsDTO> matches = mRepository.findMatchesByPlayerId(playerId).stream().map(match -> objectMapper.convertValue(match, MatchDetailsDTO.class)).toList();
         for (MatchDetailsDTO match : matches) {
-            match.setPlayerOneName(playerRepository.findById(match.getPlayer1Id()).orElseThrow().getName());
-            match.setPlayerTwoName(playerRepository.findById(match.getPlayer2Id()).orElseThrow().getName());
+            Player player1 = playerRepository.findById(match.getPlayer1Id())
+                    .orElseThrow(() -> new NotFoundException("User not found"));
+            Player player2 = playerRepository.findById(match.getPlayer2Id())
+                    .orElseThrow(() -> new NotFoundException("User not found"));
+            match.setPlayerOneName(player1.getName());
+            match.setPlayerTwoName(player2.getName());
         }
         return matches;
     }

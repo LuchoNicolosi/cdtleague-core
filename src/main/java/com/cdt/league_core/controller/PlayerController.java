@@ -1,7 +1,9 @@
 package com.cdt.league_core.controller;
 
 import com.cdt.league_core.dto.ApiResponse;
+import com.cdt.league_core.dto.MatchHistoryDTO;
 import com.cdt.league_core.dto.PlayerDTO;
+import com.cdt.league_core.dto.response.MatchHistoryDetailsDTO;
 import com.cdt.league_core.service.IPlayerService;
 import com.cdt.league_core.service.impl.PlayerServiceImpl;
 import jakarta.validation.Valid;
@@ -41,6 +43,17 @@ public class PlayerController {
     public ResponseEntity<ApiResponse<PlayerDTO>> getPlayer(@PathVariable Long playerId) {
         try {
             return ResponseEntity.ok(new ApiResponse<>(true, playerService.findById(playerId), "Players fetched successfully"));
+        } catch (Exception e) {
+            log.error("Error get players: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, null, "Error fetching players: " + e.getMessage()));
+        }
+    }
+
+    @GetMapping("/{playerId}/match-history")
+    public ResponseEntity<ApiResponse<List<MatchHistoryDetailsDTO>>> getMatchHistoryByPlayer(@PathVariable Long playerId) {
+        try {
+            return ResponseEntity.ok(new ApiResponse<>(true, playerService.findAllMatchHistoryByPlayer(playerId), "Matches history fetched successfully"));
         } catch (Exception e) {
             log.error("Error get players: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
