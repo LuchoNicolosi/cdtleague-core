@@ -8,5 +8,7 @@ import java.util.List;
 public interface IMatchService {
     List<MatchDetailsDTO> findAll();
 
+    List<MatchDetailsDTO> getByPlayerId(Long playerId);
+
     MatchDTO createMatch(MatchDTO match);
 }

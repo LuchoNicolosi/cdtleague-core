@@ -7,5 +7,7 @@ import java.util.List;
 public interface IPlayerService {
     List<PlayerDTO> findAll();
 
+    PlayerDTO findById(Long id);
+
     PlayerDTO createPlayer(PlayerDTO player);
 }

@@ -35,8 +35,19 @@ public class MatchController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<ApiResponse> createMatch(@Valid  @RequestBody MatchDTO data) {
+    @GetMapping("/player/{playerId}")
+    public ResponseEntity<ApiResponse<List<MatchDetailsDTO>>> getMatchesByPlayer(@PathVariable Long playerId) {
+        try {
+            return ResponseEntity.ok(new ApiResponse<>(true, matchService.getByPlayerId(playerId), "Match fetch successfully"));
+        } catch (Exception e) {
+            log.error("Error getting matches: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, null, "Error fetching matches: " + e.getMessage()));
+        }
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<ApiResponse> createMatch(@Valid @RequestBody MatchDTO data) {
         try {
             matchService.createMatch(data);
             return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(true, null, "Match created successfully"));

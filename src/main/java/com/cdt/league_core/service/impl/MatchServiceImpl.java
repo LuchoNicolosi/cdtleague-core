@@ -45,6 +45,16 @@ public class MatchServiceImpl implements IMatchService {
     }
 
     @Override
+    public List<MatchDetailsDTO> getByPlayerId(Long playerId) {
+        List<MatchDetailsDTO> matches = mRepository.findMatchesByPlayerId(playerId).stream().map(match -> objectMapper.convertValue(match, MatchDetailsDTO.class)).toList();
+        for (MatchDetailsDTO match : matches) {
+            match.setPlayerOneName(playerRepository.findById(match.getPlayer1Id()).orElseThrow().getName());
+            match.setPlayerTwoName(playerRepository.findById(match.getPlayer2Id()).orElseThrow().getName());
+        }
+        return matches;
+    }
+
+    @Override
     public MatchDTO createMatch(MatchDTO matchDto) {
         validateMatch(matchDto);
         Match match = objectMapper.convertValue(matchDto, Match.class);

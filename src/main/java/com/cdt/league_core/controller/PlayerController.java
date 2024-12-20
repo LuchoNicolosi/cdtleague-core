@@ -2,6 +2,7 @@ package com.cdt.league_core.controller;
 
 import com.cdt.league_core.dto.ApiResponse;
 import com.cdt.league_core.dto.PlayerDTO;
+import com.cdt.league_core.service.IPlayerService;
 import com.cdt.league_core.service.impl.PlayerServiceImpl;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -17,10 +18,10 @@ import java.util.List;
 @RequestMapping("/player")
 public class PlayerController {
     private final Logger log = LoggerFactory.getLogger(PlayerController.class);
-    private final PlayerServiceImpl playerService;
+    private final IPlayerService playerService;
 
     @Autowired
-    public PlayerController(PlayerServiceImpl playerService) {
+    public PlayerController(IPlayerService playerService) {
         this.playerService = playerService;
     }
 
@@ -29,6 +30,17 @@ public class PlayerController {
     public ResponseEntity<ApiResponse<List<PlayerDTO>>> getPlayers() {
         try {
             return ResponseEntity.ok(new ApiResponse<>(true, playerService.findAll(), "Players fetched successfully"));
+        } catch (Exception e) {
+            log.error("Error get players: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, null, "Error fetching players: " + e.getMessage()));
+        }
+    }
+
+    @GetMapping("/{playerId}")
+    public ResponseEntity<ApiResponse<PlayerDTO>> getPlayer(@PathVariable Long playerId) {
+        try {
+            return ResponseEntity.ok(new ApiResponse<>(true, playerService.findById(playerId), "Players fetched successfully"));
         } catch (Exception e) {
             log.error("Error get players: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
