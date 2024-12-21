@@ -61,6 +61,17 @@ public class PlayerController {
         }
     }
 
+    @GetMapping("/{playerId}/match-history/{id}")
+    public ResponseEntity<ApiResponse<MatchHistoryDetailsDTO>> getMatchHistoryById(@PathVariable Long playerId, @PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(new ApiResponse<>(true, playerService.findMatchHistoryById(playerId, id), "Match history fetched successfully"));
+        } catch (Exception e) {
+            log.error("Error get players: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, null, "Error fetching players: " + e.getMessage()));
+        }
+    }
+
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createPlayer(@Valid @RequestBody PlayerDTO data) {
         try {

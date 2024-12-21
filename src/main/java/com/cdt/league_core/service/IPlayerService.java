@@ -11,6 +11,8 @@ public interface IPlayerService {
 
     PlayerDTO findById(Long id);
 
+    MatchHistoryDetailsDTO findMatchHistoryById(Long playerId, Long id);
+
     List<MatchHistoryDetailsDTO> findAllMatchHistoryByPlayer(Long playerId);
 
     PlayerDTO createPlayer(PlayerDTO player);
