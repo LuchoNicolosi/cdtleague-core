@@ -2,14 +2,18 @@ package com.cdt.league_core.controller;
 
 import com.cdt.league_core.dto.ApiResponse;
 import com.cdt.league_core.dto.MatchHistoryDTO;
+import com.cdt.league_core.dto.MatchTypeDTO;
 import com.cdt.league_core.dto.PlayerDTO;
 import com.cdt.league_core.dto.response.MatchHistoryDetailsDTO;
+import com.cdt.league_core.model.enums.MatchType;
 import com.cdt.league_core.service.IPlayerService;
 import com.cdt.league_core.service.impl.PlayerServiceImpl;
 import jakarta.validation.Valid;
+import org.hibernate.mapping.Any;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,9 +66,10 @@ public class PlayerController {
     }
 
     @GetMapping("/{playerId}/match-history/{id}")
-    public ResponseEntity<ApiResponse<MatchHistoryDetailsDTO>> getMatchHistoryById(@PathVariable Long playerId, @PathVariable Long id) {
+    public ResponseEntity<ApiResponse<MatchHistoryDetailsDTO>> getMatchHistoryById(@PathVariable Long playerId, @PathVariable Long id, @Param(value = "matchType") MatchTypeDTO matchTypeDTO) {
         try {
-            return ResponseEntity.ok(new ApiResponse<>(true, playerService.findMatchHistoryById(playerId, id), "Match history fetched successfully"));
+            return ResponseEntity.ok(new ApiResponse<>(true, playerService.findMatchHistoryById(playerId, id, matchTypeDTO.getMatchType()), "Match history fetched successfully"))
+                    ;
         } catch (Exception e) {
             log.error("Error get players: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

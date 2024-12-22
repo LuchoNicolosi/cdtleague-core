@@ -4,8 +4,10 @@ import com.cdt.league_core.dto.PlayerDTO;
 import com.cdt.league_core.dto.response.MatchDetailsDTO;
 import com.cdt.league_core.dto.response.MatchHistoryDetailsDTO;
 import com.cdt.league_core.exception.NotFoundException;
+import com.cdt.league_core.model.Match;
 import com.cdt.league_core.model.MatchHistory;
 import com.cdt.league_core.model.Player;
+import com.cdt.league_core.model.enums.MatchType;
 import com.cdt.league_core.repository.MatchHistoryRepository;
 import com.cdt.league_core.repository.PlayerRepository;
 import com.cdt.league_core.service.IPlayerService;
@@ -45,9 +47,12 @@ public class PlayerServiceImpl implements IPlayerService {
     }
 
     @Override
-    public MatchHistoryDetailsDTO findMatchHistoryById(Long playerId, Long id) {
+    public MatchHistoryDetailsDTO findMatchHistoryById(Long playerId, Long id, MatchType typeMatch) {
         pRepository.findById(id).orElseThrow(() -> new NotFoundException("Player with id [" + id + "] not found"));
         MatchHistory matchHistory = matchHistoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Match history [" + id + "] not found"));
+        if (typeMatch != null) {
+            matchHistory.setMatches(matchHistory.getMatches().stream().filter(match -> match.getType().equals(typeMatch)).toList());
+        }
         // Convertir MatchHistory a DTO
         MatchHistoryDetailsDTO detailsDto = objectMapper.convertValue(matchHistory, MatchHistoryDetailsDTO.class);
 
@@ -110,7 +115,7 @@ public class PlayerServiceImpl implements IPlayerService {
         detailsDto.setPlayerWins(playerWins.get());
         detailsDto.setRivalWins(rivalWins.get());
         detailsDto.setDraws(draws.get());
-
+        detailsDto.setTotalMatches(detailsDto.getMatches().size());
         // Determinar si el jugador actual es Player1 o Player2 y asignar datos
         if (matchHistory.getPlayer1Id().equals(playerId)) {
             // Datos del jugador actual
