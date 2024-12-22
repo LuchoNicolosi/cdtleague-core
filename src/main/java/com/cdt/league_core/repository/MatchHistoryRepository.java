@@ -12,6 +12,6 @@ public interface MatchHistoryRepository extends JpaRepository<MatchHistory, Long
     @Query("SELECT m FROM MatchHistory m WHERE m.player1Id = :playerId OR m.player2Id = :playerId")
     List<MatchHistory> findMatchesHistoryByPlayerId(Long playerId);
 
-    @Query("SELECT m FROM MatchHistory m WHERE m.player1Id = :player1 OR m.player2Id = :player2 AND m.player1Id = :player2 OR m.player2Id = :player1")
+    @Query("SELECT m FROM MatchHistory m WHERE (m.player1Id = :player1 AND m.player2Id = :player2) OR (m.player1Id = :player2 AND m.player2Id = :player1)")
     MatchHistory findByPlayer1IdAndPlayer2Id(Long player1, Long player2);
 }
